@@ -1,0 +1,13 @@
+POST http://localhost:5001/api/tarefas
+Content-Type: application/json
+
+{
+    "titulo": "teste de nova tarefa"
+}
+
+POST http://localhost:5001/api/tarefas
+Content-Type: application/json
+
+{
+    "titulo": "teste de nova tarefa2"
+}
