@@ -14,15 +14,22 @@ router.get('/', (req, res) => {
 
 // Rota para adicionar uma nova tarefa
 router.post('/', (req, res) => {
+    const { titulo } = req.body;
+  
+    // Verificar se o título foi fornecido
+    if (!titulo || titulo.trim() === '') {
+      return res.status(400).json({ message: 'Título inválido' });
+    }
+  
     const novaTarefa = {
-        id: tarefas.length + 1,
-        titulo: req.body.titulo,
-        concluida: false
+      id: tarefas.length + 1,
+      titulo: titulo,
+      concluida: false
     };
     tarefas.push(novaTarefa);
     res.status(201).json(novaTarefa);
-});
-
+  });
+  
 // Atualizar tarefa por ID
 router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
@@ -38,9 +45,20 @@ router.put('/:id', (req, res) => {
 // Deletar tarefa por ID
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    tarefas = tarefas.filter(t => t.id !== id);
+    const tarefaIndex = tarefas.findIndex(t => t.id === id);
+  
+    // Verifica se a tarefa foi encontrada
+    if (tarefaIndex === -1) {
+      return res.status(404).json({ message: 'Tarefa não encontrada' });
+    }
+  
+    // Deleta a tarefa
+    tarefas.splice(tarefaIndex, 1);
+  
+    // Retorna uma resposta de sucesso
     res.json({ message: 'Tarefa deletada com sucesso' });
-});
+  });
+  
 
 
 // Exportando o router
