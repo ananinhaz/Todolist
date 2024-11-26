@@ -43,5 +43,5 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// Exportando o roteador
+// Exportando o router
 module.exports = router;
