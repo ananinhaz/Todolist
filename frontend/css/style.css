@@ -1,85 +1,144 @@
-/* Efeito de fade-in para as tarefas */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Efeito de slide-up ao adicionar uma tarefa */
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* Título */
+h1 {
+    text-align: center;
+    color: #6f42c1;
+    margin-top: 20px;
+    font-size: 2.5rem;
 }
 
-/* Efeito de fade-out ao deletar uma tarefa */
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+/* Formulário */
+input[type="text"] {
+    padding: 12px;
+    border: 2px solid #d3c4e3;
+    border-radius: 25px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-/* css para as tarefas */
-li {
-    padding: 10px 0;
-    opacity: 0; /* Inicialmente invisível */
-    animation: fadeIn 0.5s ease-out forwards;
+input[type="text"]:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 10px rgba(111, 66, 193, 0.3);
 }
 
-/* Animação de slide-up para a tarefa adicionada */
-.tarefa-adicionada {
-    animation: slideUp 0.5s ease-out forwards;
+button#adicionar {
+    background: linear-gradient(135deg, #6f42c1, #5a359c);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Efeito para tarefas concluídas */
-.concluida {
-    text-decoration: line-through;
-    background-color: #d3ffd3;
-    animation: fadeIn 0.5s ease-out forwards;
+button#adicionar:hover {
+    transform: scale(1.05);
 }
 
-/* Efeito de fade-out para remover tarefa */
-.remover {
-    animation: fadeOut 0.5s ease-out forwards;
+/* Lista de tarefas */
+#tarefas-lista {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 650px;
 }
 
+#tarefas-lista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 2px solid #d3c4e3;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    flex-wrap: wrap; /* Permite que os itens se ajustem quando necessário */
+    gap: 10px; /* Adiciona espaçamento entre os itens */
+}
+
+#tarefas-lista li:hover {
+    transform: scale(1.02);
+}
+
+/* Ajustando a tarefa para flex layout */
 .tarefa-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
+    gap: 10px; /* Garante espaçamento entre checkbox título e botão */
+    flex-wrap: wrap; /* Permite que os itens se ajustem ao espaço */
+    width: 100%; /* Faz com que os itens ocupem toda a largura disponível */
 }
 
+/* Título da tarefa */
 .tarefa-titulo {
+    flex-grow: 1;
     margin-left: 10px;
+    font-size: 1rem;
+    word-break: break-word; /* Quebra de linha no texto */
+    white-space: normal; /* Permite a quebra de linha */
 }
 
 .tarefa-titulo.concluida {
-    text-decoration: line-through; /* Risca o título da tarefa concluída */
-    color: gray;
+    text-decoration: line-through;
+    color: #6f42c1;
 }
 
-/* css para o botão de deletar */
-.delete-button {
-    background-color: red;
-    color: white;
+/* Botão de deletar */
+button.delete-button {
+    background-color: #ff4d4d;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     padding: 5px 10px;
-    margin-left: 10px;
     cursor: pointer;
-    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Garante que o botão "Deletar" fique alinhado a direita */
 }
 
-.delete-button:hover {
-    background-color: darkred;
+button.delete-button:hover {
+    background-color: #cc0000;
 }
+
+/* Checkbox */
+input[type="checkbox"] {
+    transform: scale(1.3);
+    cursor: pointer;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #6f42c1;
+    background-color: #fff;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #00a028;
+    border-color: #00a028;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2713';
+    position: absolute;
+    top: -3px;
+    left: 2px;
+    font-size: 16px;
+    color: #fff;
+}
+
